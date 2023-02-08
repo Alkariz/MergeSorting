@@ -1,10 +1,11 @@
+import FileSorting.MergeSorter;
 import model.DataType;
 import model.SortMode;
 import textFileValidation.TextFileValidator;
 
 import java.util.ArrayList;
 
-public class Application {
+public class FileMergingApplication {
     public static void main(String[] args) {
 
         // 0 аргумент - имя приложения
@@ -43,11 +44,17 @@ public class Application {
         for (var i=inputFileNameIndex; i< args.length; i++) {
             String inputFileName = args[i];
             // Если файл проходит проверерку, добавляем его в список для сортировки
-            if (textFileValidator.startValidation(inputFileName)) {
+            if (textFileValidator.validateFile(inputFileName)) {
                 inputFileNames.add(inputFileName);
             }
         }
 
+        MergeSorter mergeSorter = new MergeSorter();
+        textFileValidator.setDataType(dataType);
+        textFileValidator.setSortMode(sortMode);
+        String[] tempArray = new String[inputFileNames.size()];
+        inputFileNames.toArray(tempArray);
+        mergeSorter.mergeFiles(tempArray);
 
         System.out.println("Hello world!");
     }

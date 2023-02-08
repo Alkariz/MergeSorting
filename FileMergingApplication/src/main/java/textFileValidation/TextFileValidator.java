@@ -18,6 +18,7 @@ public class TextFileValidator {
     @Getter @Setter
     private SortMode sortMode;
 
+    // Функция сравнения предыдущего и текущего строкового значения
     private boolean compareValues(String prevStringValue, String currentStringValue) {
         int compareResult = currentStringValue.compareTo(prevStringValue);
         if (sortMode == SortMode.Ascending) {
@@ -27,6 +28,7 @@ public class TextFileValidator {
         }
     }
 
+    // Функция сравнения предыдущего и текущего числового значения
     private boolean compareValues(int prevIntValue, int currentIntValue) {
         if (sortMode == SortMode.Ascending) {
             return currentIntValue < prevIntValue;
@@ -35,7 +37,8 @@ public class TextFileValidator {
         }
     }
 
-    public boolean startValidation(String filePath) {
+    // Функция проверки файла на соответствие заданным параметрам
+    public boolean validateFile(String filePath) {
         try {
             FileReader fileReader = new FileReader(filePath);
             Scanner scan = new Scanner(fileReader);
