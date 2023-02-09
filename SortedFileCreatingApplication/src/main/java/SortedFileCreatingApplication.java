@@ -17,23 +17,23 @@ public class SortedFileCreatingApplication {
 
                 // Количество строк в файле
                 Random random = new Random();
-                int linesCount = random.nextInt(1000000);
+                int linesCount = random.nextInt(100000);
 
-                // Специалньый массив, куда заполняются цифры, потом будет сортироваться
+                // Специальный массив, куда заполняются цифры, потом будет сортироваться
                 int[] numbersArray = new int[linesCount];
                 for (int j = 0; j < linesCount; j++) {
                     numbersArray[j] = random.nextInt(Integer.MAX_VALUE);
                 }
                 Arrays.parallelSort(numbersArray);
-                for (int j = 0; j < linesCount; j++) {
+                for (int j = 0; j < linesCount-1; j++) {
                     fileWriter.write(Integer.toString(numbersArray[j]));
                     fileWriter.append('\n');
                 }
+                fileWriter.write(Integer.toString(numbersArray[linesCount-1]));
                 fileWriter.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-//                FileWriter fileWriter = new FileWriter("input" + Integer.toString(i));
         }
     }
 }

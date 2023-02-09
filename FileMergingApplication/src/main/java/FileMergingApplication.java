@@ -1,4 +1,4 @@
-import FileSorting.MergeSorter;
+import fileSorting.MergeSorter;
 import model.DataType;
 import model.SortMode;
 import textFileValidation.TextFileValidator;
@@ -43,18 +43,25 @@ public class FileMergingApplication {
         // Производим проверку всех файлов
         for (var i=inputFileNameIndex; i< args.length; i++) {
             String inputFileName = args[i];
-            // Если файл проходит проверерку, добавляем его в список для сортировки
+            // Если файл проходит проверку, добавляем его в список для сортировки
             if (textFileValidator.validateFile(inputFileName)) {
                 inputFileNames.add(inputFileName);
+            } else {
+                String fileNotAllowed = inputFileName + " не является подходящим под данный тип сортировки";
+                System.out.println(fileNotAllowed);
             }
         }
 
         MergeSorter mergeSorter = new MergeSorter();
-        textFileValidator.setDataType(dataType);
-        textFileValidator.setSortMode(sortMode);
+        mergeSorter.setDataType(dataType);
+        mergeSorter.setSortMode(sortMode);
         String[] tempArray = new String[inputFileNames.size()];
         inputFileNames.toArray(tempArray);
-        mergeSorter.mergeFiles(tempArray);
+        if (mergeSorter.mergeFiles(tempArray, args[inputFileNameIndex-1])) {
+            System.out.println("Сортировка проведена успешно");
+        } else {
+            System.out.println("Сортировка проведена успешно");
+        }
 
         System.out.println("Hello world!");
     }

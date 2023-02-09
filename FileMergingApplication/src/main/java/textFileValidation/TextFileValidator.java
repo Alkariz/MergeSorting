@@ -10,21 +10,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+@Getter @Setter
 public class TextFileValidator {
 
-    @Getter @Setter
     private DataType dataType;
 
-    @Getter @Setter
     private SortMode sortMode;
 
     // Функция сравнения предыдущего и текущего строкового значения
     private boolean compareValues(String prevStringValue, String currentStringValue) {
         int compareResult = currentStringValue.compareTo(prevStringValue);
         if (sortMode == SortMode.Ascending) {
-            return compareResult<0;
+            return compareResult < 0;
         } else {
-            return compareResult>0;
+            return compareResult > 0;
         }
     }
 
