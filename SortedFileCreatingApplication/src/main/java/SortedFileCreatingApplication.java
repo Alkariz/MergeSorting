@@ -25,11 +25,13 @@ public class SortedFileCreatingApplication {
                     numbersArray[j] = random.nextInt(Integer.MAX_VALUE);
                 }
                 Arrays.parallelSort(numbersArray);
-                for (int j = 0; j < linesCount-1; j++) {
+//                for (int j = 0; j < linesCount-1; j++) {
+                for (int j = linesCount-1; j >0 ; j--) {
                     fileWriter.write(Integer.toString(numbersArray[j]));
                     fileWriter.append('\n');
                 }
-                fileWriter.write(Integer.toString(numbersArray[linesCount-1]));
+//                fileWriter.write(Integer.toString(numbersArray[linesCount-1]));
+                fileWriter.write(Integer.toString(numbersArray[0]));
                 fileWriter.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());

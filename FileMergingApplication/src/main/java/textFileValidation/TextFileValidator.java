@@ -44,7 +44,12 @@ public class TextFileValidator {
 
             // Предыдущие прочитанные значения
             String prevStringValue = "";
-            int prevIntValue = Integer.MIN_VALUE;
+            int prevIntValue;
+            if (sortMode == SortMode.Ascending) {
+                prevIntValue = Integer.MIN_VALUE;
+            } else {
+                prevIntValue = Integer.MAX_VALUE;
+            }
             while (scan.hasNextLine()) {
                 String currentStringValue = scan.nextLine();
                 if (getDataType() == DataType.Numeric) {
