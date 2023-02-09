@@ -9,7 +9,7 @@ public class SortedFileCreatingApplication {
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             try {
-                // Создаём (если надо) и заполянем файл
+                // Создаём (если надо) и заполняем файл
                 String fileName = "input" + i + ".txt";
                 File file = new File(fileName);
                 file.createNewFile();

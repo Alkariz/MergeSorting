@@ -5,6 +5,7 @@ import lombok.Setter;
 import model.DataType;
 import model.SortMode;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -195,6 +196,8 @@ public class MergeSorter {
     // Процедура сливания входящих файлов
     public boolean mergeFiles(String[] inputFilesNames, String outputFileName) {
         try {
+            File file = new File(outputFileName);
+            file.createNewFile();
             fileWriter = new FileWriter(outputFileName);
             filesCount = inputFilesNames.length;
             for (var filesName : inputFilesNames) {
@@ -204,6 +207,7 @@ public class MergeSorter {
                 scanners.add(scan);
             }
 
+            // Заполняем массивы значений первыми строками файлов
             if (!initArrays()) {
                 System.out.println("Что-то пошла не так на этапе загрузки файлов");
                 return false;
@@ -217,6 +221,7 @@ public class MergeSorter {
             // Осталось одно самое большое значение
             addLastValue();
 
+            // Закрываем все файлы
             for (var fileReader : fileReaders) {
                 fileReader.close();
             }
