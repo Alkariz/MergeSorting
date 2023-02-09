@@ -50,9 +50,9 @@ public class TextFileValidator {
                 if (getDataType() == DataType.Numeric) {
                     try {
                         int currentIntValue = Integer.parseInt(currentStringValue);
-                        // Сравниваем числа (если получилось добыть число из строки) в зависимости от режима сортирвоки
+                        // Сравниваем числа (если получилось добыть число из строки) в зависимости от режима сортировки
                         if (compareValues(prevIntValue, currentIntValue)) {
-                            System.out.println("Файл " + filePath + " содержит несортированые строки");
+                            System.out.println("Файл " + filePath + " содержит несортированные строки");
                             return false;
                         } else {
                             prevIntValue = currentIntValue;
@@ -70,7 +70,7 @@ public class TextFileValidator {
                     }
                     // Сравниваем строки в зависимости от режима сортировки
                     if (compareValues(prevStringValue, currentStringValue)) {
-                        System.out.println("Файл " + filePath + " содержит несортированые строки");
+                        System.out.println("Файл " + filePath + " содержит несортированные строки");
                         return false;
                     } else {
                         prevStringValue = currentStringValue;

@@ -33,10 +33,13 @@ public class MergeSorter {
     // Количество файлов -> длина списков textValuesArray, numericValuesArray, scanners, fileReaders
     private static int filesCount;
 
+    // Формат входящих данных
     private DataType dataType;
 
+    // Режим сортировки
     private SortMode sortMode;
 
+    // Сравнение текстовых значений
     private boolean compareValues(String prevStringValue, String currentStringValue) {
         if (prevStringValue.equals("")) {
             return true;
@@ -46,13 +49,14 @@ public class MergeSorter {
         }
 
         int compareResult = currentStringValue.compareTo(prevStringValue);
-        if (sortMode == SortMode.Ascending) {
+        if (getSortMode() == SortMode.Ascending) {
             return compareResult < 0;
         } else {
             return compareResult > 0;
         }
     }
 
+    // Сравнение цифровых значений
     private boolean compareValues(int prevIntValue, int currentIntValue) {
         if (prevIntValue == Integer.MIN_VALUE) {
             return true;
@@ -61,7 +65,7 @@ public class MergeSorter {
             return false;
         }
 
-        if (sortMode == SortMode.Ascending) {
+        if (getSortMode() == SortMode.Ascending) {
             return currentIntValue < prevIntValue;
         } else {
             return currentIntValue > prevIntValue;
